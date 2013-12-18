@@ -1,0 +1,6 @@
+*.exe
+*.core
+*.sh
+*.txt
+*.o
+*.tsv
