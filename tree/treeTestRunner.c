@@ -25,7 +25,6 @@ void testEnded(){
 void resetTestCount(){
 	testCount=0;
 	passCount=0;
-	printf("********* Starting tests\n\n");
 }
 
 void summarizeTestCount(){
@@ -49,34 +48,24 @@ int main(){
 	fixtureSetup();
 	resetTestCount();
 
-	testStarted("test_matching_brackets_gives_1");
+	testStarted("test_insert_root_node");
 	setup();
-		test_matching_brackets_gives_1();
+		test_insert_root_node();
 	tearDown();
 	testEnded();
-	testStarted("test_gives_0_as_brackets_not_matched");
+	testStarted("test_insert_node_under_root_node");
 	setup();
-		test_gives_0_as_brackets_not_matched();
+		test_insert_node_under_root_node();
 	tearDown();
 	testEnded();
-	testStarted("test_expression_with_valid_bracket_sequence_gives_1");
+	testStarted("test_insert_under_child_node");
 	setup();
-		test_expression_with_valid_bracket_sequence_gives_1();
+		test_insert_under_child_node();
 	tearDown();
 	testEnded();
-	testStarted("test_expression_with_valid_brackets_sequence_gives_1");
+	testStarted("test_insert_under_second_child");
 	setup();
-		test_expression_with_valid_brackets_sequence_gives_1();
-	tearDown();
-	testEnded();
-	testStarted("test_expression_without_brackets_gives_0");
-	setup();
-		test_expression_without_brackets_gives_0();
-	tearDown();
-	testEnded();
-	testStarted("test_expression_with_incorrect_brackets_gives_0");
-	setup();
-		test_expression_with_incorrect_brackets_gives_0();
+		test_insert_under_second_child();
 	tearDown();
 	testEnded();
 

@@ -7,6 +7,9 @@ int isHeader(List* list){
         return (list->header->next ==NULL && list->header->prev == NULL);
 }
 
+int compareInt(void *element1,void *element2){
+        return *(int*)element1 - *(int*)element2;
+}
 void test_insert_node_will_not_add_node_at_index_which_does_not_exist(){
         List* list = createList();
         int data1 = 10,data2= 20;
@@ -300,4 +303,44 @@ void test_delete_node_with_string_data_at_middle_of_linked_list(){
         ASSERT(0 == strcmp(*(string*)list->header->data , "data1"));
         node = (list->header)->next;
         ASSERT(0 == strcmp(*(string*)(node->data) , "data2"));
+}
+
+
+void test_hasnext_of_getiterator_gives_true_if_list_not_empty(){
+        List* dList = createList();
+        Iterator it;
+        int number1 = 5,number2 = 9,number3 = 65;
+        insertNode(dList, 0, &number1);
+        it = getIterator(dList);
+        ASSERT(1 == it.hasNext(&it));
+}
+void test_hasnext_of_getiterator_gives_false_if_list_not_empty(){
+        List* dList = createList();
+        Iterator it;
+        it = getIterator(dList);
+        ASSERT(0 == it.hasNext(&it));
+}
+void test_next_of_getiterator_gives_next_data(){
+        List* dList = createList();
+        Iterator it;
+        int number1 = 5;
+        insertNode(dList, 0, &number1);
+        it = getIterator(dList);
+        if(it.hasNext(&it))
+        ASSERT(5 == *(int*)it.next(&it));
+}
+void test_should_give_all_values_using_iterator(){
+        List* dList = createList();
+        Iterator it;
+        int i = 0;
+        int numbers[] = {5,10,15,20};
+        insertNode(dList, 0, numbers);
+        insertNode(dList, 1, &numbers[1]);
+        insertNode(dList, 2, &numbers[2]);
+        insertNode(dList, 3, &numbers[3]);
+        it = getIterator(dList);
+        while(it.hasNext(&it)){                
+                ASSERT(numbers[i] == *(int*)it.next(&it));
+                i++;
+        }
 }

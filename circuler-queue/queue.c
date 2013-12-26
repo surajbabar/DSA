@@ -21,7 +21,7 @@ int isFull(Queue* queue){
 	return (queue->rear==queue->length-1 && queue->front==-1 )||queue->front-queue->rear==1;
 };
 
-void* top(Queue* queue){
+void* rear(Queue* queue){
 	if(isEmpty(queue)) return NULL;	
 	return queue->elements+(queue->rear*queue->typeSize); 
 };

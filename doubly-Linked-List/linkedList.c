@@ -44,16 +44,33 @@ int insertNode(List* list , int index , void* data){
     list->length++;
     return 1;
 };
-
+void sort(List* list, compare fun){
+    Node *temp,*node,*currentNode;
+    void *data;
+    int change = 0;
+    if(list->header == NULL) return;
+    for (node = list->header->next; node != NULL; node = node->next){
+        data = node->data;
+        change = 0;
+        for(temp = node->prev;temp != NULL;temp = temp->prev){
+            currentNode = temp;
+            if(fun(data,temp->data) < 0){
+                change++;
+                temp->next->data = temp->data;
+            }
+            else break;
+        }
+        if(change)
+            currentNode->data = data;
+    }
+};
 void deleteFirst(List* list){
     Node* node = list->header;
     if(list->length == 1) list->header = NULL;
     else {
-            list->header = list->header->next;
-            list->header->prev = NULL;
+        list->header = list->header->next;
+        list->header->prev = NULL;
     };
-
-  
     free(node);
 };
 
@@ -82,3 +99,30 @@ int deleteNode(List* list , int index){
     list->length--;
     return 1;
 };
+int hasNextForList(Iterator *it){
+    List *dList;
+    dList = (List*)it->list;
+    if(it->position == dList->length)
+        return 0;
+    return 1;
+}
+void* nextForList(Iterator *it){
+    List *dList;
+    int i = 0;
+    Node *temp;
+    if(0 == hasNextForList(it)) return NULL;
+    dList = (List*)it->list;
+    temp = dList->header;
+    for(i = 0;i < it->position;i++)
+        temp = temp->next;
+    it->position++;
+    return temp->data;
+}
+Iterator getIterator(List *dList){
+    Iterator listIterator;
+    listIterator.position = 0;
+    listIterator.list = dList;
+    listIterator.hasNext = &hasNextForList;
+    listIterator.next = &nextForList;
+    return listIterator;
+}

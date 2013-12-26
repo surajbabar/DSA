@@ -1,4 +1,3 @@
-typedef char string[50];
 
 typedef struct Node{
         void* data;

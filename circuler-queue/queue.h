@@ -9,7 +9,7 @@ typedef struct {
 Queue* create(int typeSize, int length);						
 
 void* dequeue(Queue* queue);
-void* top(Queue* queue);
+void* rear(Queue* queue);
 
 int enqueue(Queue* queue ,void* element);
 int isEmpty(Queue* queue); 
