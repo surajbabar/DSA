@@ -1,4 +1,5 @@
 #include "../doubly-Linked-List/linkedList.h"
+#include "treeIterator.h"
  typedef int (*compareFPtr)(void* first, void* second);
 typedef struct {
         compareFPtr compare;
@@ -12,8 +13,8 @@ typedef struct treeNode{
 } TreeNode;
 
 Tree createTree(compareFPtr compare);
-TreeNode* createTreeNode(void* data,TreeNode* parent);
-int insertTreeNode(Tree* tree, void* parentData, void* data);
-TreeNode* getTreeNode(List* tree,void* nodeData,compareFPtr compare);
+int insert(Tree* tree, void* parentData, void* data);
 Iterator getChildren(Tree* tree, void* parentData);
-void* deleteTreeNode(Tree* tree, void* data);
+int search(Tree* tree, void* data);
+int deleteTreeNode(Tree* tree, void* data);
+void deleteTree(Tree* tree);

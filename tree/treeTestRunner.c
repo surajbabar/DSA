@@ -68,6 +68,16 @@ int main(){
 		test_insert_under_second_child();
 	tearDown();
 	testEnded();
+	testStarted("test_delete_node_under_root_node_from_tree");
+	setup();
+		test_delete_node_under_root_node_from_tree();
+	tearDown();
+	testEnded();
+	testStarted("test_delete_root_node_from_tree");
+	setup();
+		test_delete_root_node_from_tree();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();

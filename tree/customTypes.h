@@ -6,3 +6,5 @@ typedef struct TreeNode{
 }TreeNode;
 int isChild(void* data,void* parent);
 int hasChild(void* parent);
+TreeNode* createTreeNode(void* data,TreeNode* parent);
+TreeNode* getTreeNode(List* tree,void* nodeData,compare Compare);
