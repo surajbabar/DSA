@@ -2,6 +2,7 @@
 #include "linkedList.h"
 #include <stdlib.h>
 #include <string.h>
+#include "customTypes.h"
 
 void test_insert_node_will_not_add_node_at_index_which_does_not_exist(){
         List* list = createList();
