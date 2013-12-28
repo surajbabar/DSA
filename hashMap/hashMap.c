@@ -12,7 +12,7 @@ HashMap* createHashMap(HashCodeGeneratorFPtr hash, compareFPtr compare){
 	int i;
 	HashMap* map=calloc(1,sizeof(map));
 	map->capacity =10; 
-	map->buckets =(List**)calloc(map->capacity,sizeof(void*));
+	map->buckets =(List*)calloc(map->capacity,sizeof(void*));
 	map->compare = compare;
 	map->hash =hash;
 	return map;
@@ -64,5 +64,11 @@ int remove(HashMap* map,void* key){
 };
 
 void dispose(HashMap* map){
-	// Free(map->buckets);
+	List* Bucket;
+	int loop;
+	for(loop=map->capacity;loop>0;loop--){
+		Bucket = (List*)bucket(map,&loop);
+		if (Bucket == NULL) continue;
+		if(Bucket->header!= NULL)  Free(Bucket);
+	}
 }; 
