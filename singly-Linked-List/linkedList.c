@@ -9,7 +9,7 @@ List* createList(){
 };
 void Free(List* list){
     while(list->length>0)
-    deleteFirst(list);
+    deleteNode(list,0);
     free(list);
 };
 int insertNode(List* list , int index , void* data){
