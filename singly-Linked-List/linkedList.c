@@ -1,7 +1,6 @@
 #include "linkedList.h"
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 
 List* createList(){
         List* list = calloc(1, sizeof(List));
@@ -9,8 +8,7 @@ List* createList(){
 };
 void Free(List* list){
     while(list->length>0)
-    deleteNode(list,0);
-    free(list);
+        deleteNode(list,0);
 };
 int insertNode(List* list , int index , void* data){
         int i=0;
@@ -41,6 +39,7 @@ void insertMiddle(List* list , int index ,Node* node ){
 }
 void deleteFirst(List* list){
         Node* node = list->header;
+        if(list->header == NULL) return;
         if(list->length == 1) list->header = NULL;
         else list->header = list->header->next;
         free(node);
