@@ -23,10 +23,9 @@ void shiftElementsToLeftIfNeeded(ArrayList *list, int index) {
 };
 
 void increaseCapacity(ArrayList *list) {
-	if (list->length == list->capacity) {
-		list->capacity *= 2;
-		list->base = realloc(list->base, list->capacity * sizeof(void*));
-	}	
+	if (list->length != list->capacity) return;
+	list->capacity *= 2;
+	list->base = realloc(list->base, list->capacity * sizeof(void*));
 };
 
 void* remove(ArrayList *list,int index){

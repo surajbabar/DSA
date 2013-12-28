@@ -7,14 +7,13 @@ typedef struct {
 } ArrayList;
 
 ArrayList create(int capacity);
+void dispose(ArrayList *list);
 
 int insert(ArrayList *list, int index, void* data);
+void* remove(ArrayList *list,int index);
 
 void* get(ArrayList *list, int index);
-
-void dispose(ArrayList *list);
 int add(ArrayList *list,void* data);
-void* remove(ArrayList *list,int index);
 typedef int (*CompareFPtr) (const void* first, const void* second);
 int search(ArrayList *list,void* data,CompareFPtr);
 Iterator getIterator(ArrayList* list);
