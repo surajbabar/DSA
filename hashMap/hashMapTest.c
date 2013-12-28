@@ -17,7 +17,7 @@ void test_inserting_data_into_HashMap(){
 	put(map,&key,&value);
 	result = get(map,&key);
 	ASSERT(&value == result);
-	// dispose(map);
+	dispose(map);
 };
 
 void test_getting_data_from_HashMap(){
@@ -29,7 +29,7 @@ void test_getting_data_from_HashMap(){
 	put(map,&key[2],&value[2]);
 	result = get(map,&key[1]);
 	ASSERT(&value[1] == result);
-	// dispose(map);
+	dispose(map);
 };
 
 void test_deleting_data_from_HashMap(){
@@ -42,5 +42,5 @@ void test_deleting_data_from_HashMap(){
 	remove(map,&key[1]);
 	result = get(map,&key[1]);
 	ASSERT(NULL ==result);
-	// dispose(map);
+	dispose(map);
 };
