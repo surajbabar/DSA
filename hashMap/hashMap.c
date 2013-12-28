@@ -46,7 +46,8 @@ void* search(List* bucket,void* key,compareFPtr compare){
 };
 
 List* bucket(HashMap* map,void* key){
-	return (List*)(map->buckets)+(map->hash(key)*sizeof(void*));
+	int bucketNumber = map->hash(key)%map->capacity;
+	return map->buckets+bucketNumber*sizeof(void*);
 };
 int put(HashMap* map,void* key,void* value){
 	List* Bucket = bucket(map,key);
