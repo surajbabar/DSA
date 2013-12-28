@@ -8,6 +8,8 @@ List* createList(){
         return list; 
 };
 void Free(List* list){
+    while(list->length>0)
+    deleteFirst(list);
     free(list);
 };
 int insertNode(List* list , int index , void* data){
