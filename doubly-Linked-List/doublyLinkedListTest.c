@@ -313,7 +313,7 @@ void test_hasnext_of_getiterator_gives_true_if_list_not_empty(){
         insertNode(dList, 0, &number1);
         it = getIterator(dList);
         ASSERT(1 == it.hasNext(&it));
-}
+};
 void test_hasnext_of_getiterator_gives_false_if_list_not_empty(){
         List* dList = createList();
         Iterator it;
@@ -339,8 +339,5 @@ void test_should_give_all_values_using_iterator(){
         insertNode(dList, 2, &numbers[2]);
         insertNode(dList, 3, &numbers[3]);
         it = getIterator(dList);
-        while(it.hasNext(&it)){                
-                ASSERT(numbers[i] == *(int*)it.next(&it));
-                i++;
-        }
+        while(i++ <4)  ASSERT(numbers[i-1] == *(int*)it.next(&it));
 }
