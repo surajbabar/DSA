@@ -1,7 +1,3 @@
-typedef char string[50];
-
-# define failure 0
-# define success 1
 typedef struct Node{
         void* data;
         struct Node *next;
