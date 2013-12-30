@@ -1,26 +1,16 @@
-typedef char string[50];
 #include "../iterator/iterator.h"
-typedef struct Node{
-        void* data;
-        struct Node *next;
-        struct Node *prev;
-}Node;
 
-typedef struct List{
-        Node* header;
+typedef int (*compareFPtr)(void *elementToCompare,void *element);
+
+typedef struct {
+        void* header;
         int length;
-}List;
+}DList;
 
-typedef int (*compare)(void *elementToCompare,void *element);
-List* createList();
-int insertNode(List* list , int index , void* data);
-int deleteNode(List* list , int index);
-
-void insertFirst(List* list,Node* node );
-void insertMiddle(List* list , int index ,Node* node );
-void insertLast(List* list,Node* node );
-void sort(List* dList, compare cmpFunc);
-void deleteFirst(List* list);
-void deleteLast(List* list);
-void deleteMiddle(List* list , int index);
-Iterator getIterator(List *list);
+DList* DList_create();
+void DList_dispose(DList* list);
+int DList_insertNode(DList* list , int index , void* data);
+int DList_deleteNode(DList* list , int index);
+int DList_getIndex(DList* list, void* data, compareFPtr compare); 
+void DList_sort(DList* dList, compareFPtr compare);
+Iterator DList_getIterator(DList* list);
