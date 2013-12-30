@@ -48,14 +48,14 @@ int main(){
 	fixtureSetup();
 	resetTestCount();
 
-	testStarted("test_insert_node_will_not_add_node_at_index_which_does_not_exist");
-	setup();
-		test_insert_node_will_not_add_node_at_index_which_does_not_exist();
-	tearDown();
-	testEnded();
 	testStarted("test_insert_node_with_int_data_at_starting_of_linked_list");
 	setup();
 		test_insert_node_with_int_data_at_starting_of_linked_list();
+	tearDown();
+	testEnded();
+	testStarted("test_insert_node_will_not_add_node_at_index_which_does_not_exist");
+	setup();
+		test_insert_node_will_not_add_node_at_index_which_does_not_exist();
 	tearDown();
 	testEnded();
 	testStarted("test_insert_node_with_string_data_at_starting_of_linked_list");
@@ -153,11 +153,6 @@ int main(){
 		test_delete_node_with_int_data_at_end_of_linked_list_which_length_is();
 	tearDown();
 	testEnded();
-	testStarted("test_delete_node_with_float_data_at_end_of_linked_list_which_length_is");
-	setup();
-		test_delete_node_with_float_data_at_end_of_linked_list_which_length_is();
-	tearDown();
-	testEnded();
 	testStarted("test_delete_node_with_int_data_at_middle_of_linked_list");
 	setup();
 		test_delete_node_with_int_data_at_middle_of_linked_list();
@@ -178,9 +173,9 @@ int main(){
 		test_hasnext_of_getiterator_gives_true_if_list_not_empty();
 	tearDown();
 	testEnded();
-	testStarted("test_hasnext_of_getiterator_gives_false_if_list_not_empty");
+	testStarted("test_hasnext_of_getiterator_gives_false_if_list_is_empty");
 	setup();
-		test_hasnext_of_getiterator_gives_false_if_list_not_empty();
+		test_hasnext_of_getiterator_gives_false_if_list_is_empty();
 	tearDown();
 	testEnded();
 	testStarted("test_next_of_getiterator_gives_next_data");
@@ -198,10 +193,6 @@ int main(){
 	fixtureTearDown();
 	return 0;
 }
-
-void setup(){}
-
-void tearDown(){}
 
 void fixtureSetup(){}
 
