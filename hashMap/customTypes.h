@@ -1,4 +1,4 @@
-#include "../singly-Linked-List/linkedList.h"
+#include "../singly-Linked-List/SinglyLinkedList.h"
 #include "hashMap.h"
 
 typedef struct {
@@ -7,4 +7,4 @@ typedef struct {
 }Object;
 
 Object* createObject(void* key,void* value);
-void* search(List* bucket,void* key, compareFPtr compare );
+void* search(SinglyList* bucket,void* key, compareFPtr compare );
