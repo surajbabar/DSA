@@ -1,7 +1,5 @@
 #include "schedule.h"
 #include <stdlib.h>
-#include <stdio.h>
-#include "../insertion-sort/sort.h"
 
 Process* createProcess(int priority, int time){
 	Process* process  = malloc(sizeof(Process));
