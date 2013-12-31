@@ -49,14 +49,14 @@ int main(){
 	fixtureSetup();
 	resetTestCount();
 
-	testStarted("test_sort_integers_using_bubble_Sort");
+	testStarted("test_sort_integers_using_merge_Sort");
 	setup();
-		test_sort_integers_using_bubble_Sort();
+		test_sort_integers_using_merge_Sort();
 	tearDown();
 	testEnded();
-	testStarted("test_sort_chars_using_bSort");
+	testStarted("test_sort_chars_using_merge_Sort");
 	setup();
-		test_sort_chars_using_bSort();
+		test_sort_chars_using_merge_Sort();
 	tearDown();
 	testEnded();
 

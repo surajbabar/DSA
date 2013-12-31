@@ -20,14 +20,14 @@ int compareStrings(void* a, void* b){
     return 0 < strcmp(a,b) ? 0 : 1;
 }
 
-void test_sort_integers_using_bubble_Sort(){
+void test_sort_integers_using_merge_Sort(){
     int i=0,noOfElements = 8,elementsToSort[] = {6,5,3,1,8,7,2,4}, 
     expected[] = {1,2,3,4,5,6,7,8};
     mergeSort(elementsToSort,noOfElements,sizeof(int),compareInts);
     while(i++ <noOfElements)    ASSERT(expected[i-1] == elementsToSort[i-1]);
 };
 
-void test_sort_chars_using_bSort(){
+void test_sort_chars_using_merge_Sort(){
     int i=0,noOfElements =8;
     char elementsToSort[] = {'b','c','a','d','b','c','a','d'}, expected[] = {'a','a','b','b','c','c','d','d'};
     mergeSort(elementsToSort,noOfElements,1,compareChars);
