@@ -63,15 +63,16 @@ int main(){
 		test_deleting_data_from_HashMap();
 	tearDown();
 	testEnded();
+	testStarted("test_gives_all_keys_of_hashMap");
+	setup();
+		test_gives_all_keys_of_hashMap();
+	tearDown();
+	testEnded();
 
 	summarizeTestCount();
 	fixtureTearDown();
 	return 0;
 }
-
-void setup(){}
-
-void tearDown(){}
 
 void fixtureSetup(){}
 
