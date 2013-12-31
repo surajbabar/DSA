@@ -12,13 +12,13 @@ HashMap* createHashMap(HashCodeGeneratorFPtr hash, compareFPtr compare){
 	int i;
 	HashMap* map=calloc(1,sizeof(map));
 	map->capacity =10; 
-	map->buckets =(List*)calloc(map->capacity,sizeof(void*));
+	map->buckets =(SinglyList*)calloc(map->capacity,sizeof(void*));
 	map->compare = compare;
 	map->hash =hash;
 	return map;
 };
 
-int getIndex(List* bucket,void* key,compareFPtr compare){
+int getIndex(SinglyList* bucket,void* key,compareFPtr compare){
 	int i;
 	Object* object;
 	Node* node = bucket->header;
@@ -31,7 +31,7 @@ int getIndex(List* bucket,void* key,compareFPtr compare){
 	return -1;
 };
 
-void* search(List* bucket,void* key,compareFPtr compare){
+void* search(SinglyList* bucket,void* key,compareFPtr compare){
 	int i;
 	Object* object;
 	Node* node = bucket->header;
@@ -45,13 +45,13 @@ void* search(List* bucket,void* key,compareFPtr compare){
     return NULL;
 };
 
-List* bucket(HashMap* map,void* key){
+SinglyList* bucket(HashMap* map,void* key){
 	int bucketNumber = map->hash(key)%map->capacity;
 	return map->buckets+bucketNumber*sizeof(void*);
 };
 int put(HashMap* map,void* key,void* value){
-	List* Bucket = bucket(map,key);
-	return insertNode(Bucket,Bucket->length,createObject(key,value));
+	SinglyList* Bucket = bucket(map,key);
+	return SList_insertNode(Bucket,Bucket->length,createObject(key,value));
 };
 
 void* get(HashMap* map,void* key){
@@ -59,16 +59,16 @@ void* get(HashMap* map,void* key){
 };
 
 int remove(HashMap* map,void* key){
-	List* Bucket = bucket(map,key);
-	return deleteNode(Bucket,getIndex(Bucket,key,map->compare)); 
+	SinglyList* Bucket = bucket(map,key);
+	return SList_deleteNode(Bucket,getIndex(Bucket,key,map->compare)); 
 };
 
 void dispose(HashMap* map){
-	List* Bucket;
+	SinglyList* Bucket;
 	int loop;
 	for(loop=map->capacity;loop>0;loop--){
-		Bucket = (List*)bucket(map,&loop);
+		Bucket =bucket(map,&loop);
 		if (Bucket == NULL) continue;
-		if(Bucket->header!= NULL)  Free(Bucket);
+		if(Bucket->header!= NULL)  SList_dispose(Bucket);
 	}
 }; 
