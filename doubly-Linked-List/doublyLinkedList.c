@@ -9,8 +9,17 @@ DList* DList_create(){
 
 void DList_dispose(DList* list){
     while(list->length>0)
-    DList_deleteNode(list,0);
+    DList_deleteData(list,0);
 };
+
+void* DList_getData(DList* list,int index){
+    int i=0;
+    Node *node,*head = list->header;
+    if(head == NULL || index> list->length) return NULL;
+    node=head;
+    while(node->next !=NULL && i++<index) node= node->next;
+    return node->data;   
+}; 
 
 void insertFirst(void* listaddress,Node* node ){
     DList* list =listaddress;
@@ -40,7 +49,7 @@ void insertMiddle(void* listaddress , int index ,Node* node ){
     (node->next)->prev =node;
 };
 
-int DList_insertNode(DList* list , int index , void* data){
+int DList_insertData(DList* list , int index , void* data){
     Node* node = calloc(1,sizeof(node));
     if (index > list->length) return 0;
     if (index == 0)   insertFirst(list,node);
@@ -112,7 +121,7 @@ void deleteMiddle(void* listAddress, int index){
     temp->next->prev = temp->prev;
 };
 
-int DList_deleteNode(DList* list , int index){
+int DList_deleteData(DList* list , int index){
     if(index >= list->length) return 0;
     if(index == 0) deleteFirst(list);
     else if(index == list->length-1)  deleteLast(list);
