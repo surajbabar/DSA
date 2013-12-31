@@ -39,10 +39,6 @@ int SList_deleteNode(SinglyList* list , int index){
     return 1;
 };
 
-Iterator SList_iterator(SinglyList* list){
-    Iterator it;
-    return it;
-};
 
 void insertMiddle(void* listAddress , int index ,Node* node ){
     SinglyList* list =(SinglyList*)listAddress;
@@ -81,4 +77,29 @@ void deleteMiddle(void* listAddress , int index){
     middle = temp->next;
     temp->next = middle->next;
     free(middle);
+};
+
+int hasNextForList(Iterator *it){
+    SinglyList* list =it->list;
+    if(it->position == list->length)  return 0;
+    return 1;
+};
+
+void* nextForList(Iterator *it){
+    int i = 0;
+    SinglyList* dList = it->list;
+    Node* temp = dList->header;
+    if(0 == hasNextForList(it)) return NULL;
+    for(i = 0;i < it->position;i++)
+        temp = temp->next;
+    it->position++;
+    return temp->data;
+};
+Iterator SList_iterator(SinglyList* list){
+    Iterator listIterator;
+    listIterator.position = 0;
+    listIterator.list = list;
+    listIterator.hasNext = &hasNextForList;
+    listIterator.next = &nextForList;
+    return listIterator;
 };
