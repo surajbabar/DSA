@@ -1,4 +1,4 @@
-#include "../doubly-Linked-List/linkedList.h"
+#include "../doubly-Linked-List/doublyLinkedList.h"
 #include "treeIterator.h"
  typedef int (*compareFPtr)(void* first, void* second);
 typedef struct {
@@ -8,7 +8,7 @@ typedef struct {
 
 typedef struct treeNode{
         void* data;
-        List* children;
+        DList* children;
         struct treeNode* parent;
 } TreeNode;
 

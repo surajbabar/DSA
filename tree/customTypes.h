@@ -1,10 +1,11 @@
-#include "../doubly-Linked-List/linkedList.h"
+#include "../doubly-Linked-List/doublyLinkedList.h"
+
 typedef struct TreeNode{
 	void* data;
-	List* next;
+	DList* next;
 	struct Node* prev;
 }TreeNode;
 int isChild(void* data,void* parent);
 int hasChild(void* parent);
 TreeNode* createTreeNode(void* data,TreeNode* parent);
-TreeNode* getTreeNode(List* tree,void* nodeData,compare Compare);
+TreeNode* getTreeNode(DList* tree,void* nodeData,compareFPtr compare);
