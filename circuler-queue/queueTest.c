@@ -9,13 +9,6 @@ int areEqual(Queue* expected, Queue* actual){
 	return 0 == memcmp(expected->elements,actual->elements,actual->typeSize);
 };
 
-void test_Queue_Create_with_typesize_4_and_length_5_will_create_20_size_of_Queue(){
-	int a[]={0,0,0,0,0};
-	Queue* actual =create(4,5);      
-	Queue expected = {-1,-1,4,5,a};      
-	ASSERT(areEqual(&expected,actual));
-};
-
 void test_isEmpty_Queue_on_empty_Queue_will_return_true(){
 	Queue* s = create(sizeof(int), 5);
 	ASSERT(isEmpty(s));
@@ -46,12 +39,12 @@ void test_top_Queue_will_give_top_Element(){
 	ASSERT(enqueue(s,&a));
 	ASSERT(enqueue(s,&b));
 	ASSERT(enqueue(s,&c));
-	ASSERT(7==*(int*)top(s));
+	ASSERT(7==*(int*)rear(s));
 };
 
 void test_top_Queue_on_empty_Queue_will_give_null(){
 	Queue* s = create(sizeof(int),5);
-	ASSERT(NULL == top(s));
+	ASSERT(NULL == rear(s));
 };
 
 void test_Queue_enqueue_element_5_into_Queue_will_add_it_to_the_top_of_Queue(){
