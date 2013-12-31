@@ -2,8 +2,10 @@
 #include "singlyLinkedList.h"
 #include "customTypes.h"
 SinglyList* list;
+Iterator it;
 void setup(){
     list = SList_create();
+    it = SList_iterator(list);
 };
 
 void tearDown(){
@@ -175,3 +177,27 @@ void test_delete_node_with_string_data_at_middle_of_linked_list(){
     SList_insertNode(list,1,&data3);
     ASSERT(SList_deleteNode(list, 1));
 };
+
+void test_hasnext_of_getiterator_gives_true_if_list_not_empty(){
+    int number1 = 5,number2 = 9,number3 = 65;
+    SList_insertNode(list, 0, &number1);
+    ASSERT(1 == it.hasNext(&it));
+};
+void test_hasnext_of_getiterator_gives_false_if_list_is_empty(){
+        ASSERT(0 == it.hasNext(&it));
+}
+void test_next_of_getiterator_gives_next_data(){
+        int number1 = 5;
+        SList_insertNode(list, 0, &number1);
+        if(it.hasNext(&it))
+        ASSERT(5 == *(int*)it.next(&it));
+}
+void test_should_give_all_values_using_iterator(){
+        int i = 0;
+        int numbers[] = {5,10,15,20};
+        SList_insertNode(list, 0, numbers);
+        SList_insertNode(list, 1, &numbers[1]);
+        SList_insertNode(list, 2, &numbers[2]);
+        SList_insertNode(list, 3, &numbers[3]);
+        while(i++ <4)  ASSERT(numbers[i-1] == *(int*)it.next(&it));
+}
