@@ -18,6 +18,17 @@ HashMap* createHashMap(HashCodeGeneratorFPtr hash, compareFPtr compare){
 	return map;
 };
 
+int put(HashMap* map,void* key,void* value){
+	SinglyList* Bucket = bucket(map,key);
+	return SList_insertNode(Bucket,Bucket->length,createObject(key,value));
+};
+
+void rehash(HashMap* map){
+	map->capacity*=2;		
+	map->buckets =realloc(map->buckets,map->capacity);
+	
+};
+
 int getIndex(SinglyList* bucket,void* key,compareFPtr compare){
 	int i;
 	Object* object;
@@ -49,10 +60,6 @@ SinglyList* bucket(HashMap* map,void* key){
 	int bucketNumber = map->hash(key)%map->capacity;
 	return map->buckets+bucketNumber*sizeof(void*);
 };
-int put(HashMap* map,void* key,void* value){
-	SinglyList* Bucket = bucket(map,key);
-	return SList_insertNode(Bucket,Bucket->length,createObject(key,value));
-};
 
 void* get(HashMap* map,void* key){
 	return search(bucket(map,key),key,map->compare);
@@ -71,4 +78,24 @@ void dispose(HashMap* map){
 		if (Bucket == NULL) continue;
 		if(Bucket->header!= NULL)  SList_dispose(Bucket);
 	}
-}; 
+};
+
+Iterator getKeys(HashMap *map){
+    int i;
+    Object* element;
+    SinglyList* tempList = SList_create();
+    SinglyList* list = SList_create();
+    Iterator it;
+    for(i = 0;i < map->capacity; i++){
+        list = (SinglyList*)map->buckets+i*sizeof(void*);
+        if(tempList->header != NULL){
+            it = SList_iterator(list);
+            while(it.hasNext(&it)){
+                element = (Object*)it.next(&it);
+                SList_insertNode(tempList, tempList->length, element->key);                
+            }            
+        }
+    }
+    it = SList_iterator(tempList);
+    return it;
+};
