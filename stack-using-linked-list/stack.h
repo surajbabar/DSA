@@ -1,6 +1,6 @@
-#include "../doubly-Linked-List/linkedList.h"
+#include "../doubly-Linked-List/doublyLinkedList.h"
 
-typedef  List Stack;
+typedef  DList Stack;
 
 Stack* createStack();
 int push(Stack* stack,void* element);

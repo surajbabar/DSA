@@ -49,11 +49,6 @@ int main(){
 	fixtureSetup();
 	resetTestCount();
 
-	testStarted("test_create_stack");
-	setup();
-		test_create_stack();
-	tearDown();
-	testEnded();
 	testStarted("test_push_char_element_at_start_of_stack");
 	setup();
 		test_push_char_element_at_start_of_stack();
@@ -104,8 +99,6 @@ int main(){
 	fixtureTearDown();
 	return 0;
 }
-
-void setup(){}
 
 void tearDown(){}
 

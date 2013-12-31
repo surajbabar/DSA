@@ -1,55 +1,42 @@
 #include "testUtils.h"
 #include "stack.h"
 #include <string.h>
+typedef char string[256];
 
-void test_create_stack(){
-        Stack* stack = createStack();
-        ASSERT(stack->header == NULL);         
-        ASSERT(stack->length == 0);         
-}
+Stack* stack;
+void setup(){
+    stack = createStack();
+};
+
 void test_push_char_element_at_start_of_stack(){
-        Stack* stack = createStack();
-        char element = 'k';
-        push(stack , &element);
-        ASSERT(stack->header != NULL);         
-        ASSERT(*(char*)stack->header->data == 'k');         
-        ASSERT(stack->length == 1);         
-}
+    char element = 'k';
+    push(stack , &element);
+    ASSERT(&element ==top(stack));         
+};
+
 void test_push_int_element_at_start_of_stack(){
-        Stack* stack = createStack();
-        int element = 10;
-        push(stack , &element);
-        ASSERT(stack->header != NULL);         
-        ASSERT(*(int*)stack->header->data == 10);         
-        ASSERT(stack->length == 1);         
-}
+    int element = 10;
+    push(stack , &element);
+    ASSERT(&element ==top(stack));         
+};
 void test_push_string_element_at_start_of_stack(){
-        Stack* stack = createStack();
-        string data = "data";
-        push(stack , &data);
-        ASSERT(stack->header != NULL);         
-        ASSERT(0 == strcmp(*(string*)stack->header->data , "data"));         
-        ASSERT(stack->length == 1);         
-}
+    string data = "data";
+    push(stack , &data);
+    ASSERT(&data ==top(stack));         
+};
 void test_push_float_element_at_start_of_stack(){
-        Stack* stack = createStack();
-        float element = 10.5f;
-        push(stack , &element);
-        ASSERT(stack->header != NULL);         
-        ASSERT(*(float*)stack->header->data == 10.5f);         
-        ASSERT(stack->length == 1);         
-}
+    float element = 10.5f;
+    push(stack , &element);
+    ASSERT(&element ==top(stack));         
+
+};
 void test_push_int_element_at_top_of_stack(){
         Stack* stack = createStack();
         int element1 = 10,element2 = 20,element3 = 30;
         push(stack , &element1);
         push(stack , &element2);
         push(stack , &element3);
-        ASSERT(*(int*)stack->header->data == 10);         
-        ASSERT(*(int*)stack->header->next->data == 20);         
-        ASSERT(*(int*)stack->header->next->next->data == 30);         
-        ASSERT(stack->length == 3);         
-}
+};
 void test_pop_int_element_at_top_of_stack(){
         Stack* stack = createStack();
         int element1 = 10,element2 = 20,element3 = 30;
